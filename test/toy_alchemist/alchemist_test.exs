@@ -3,9 +3,17 @@ defmodule ToyAlchemist.AlchemistTest do
 
   alias ToyAlchemist.Alchemist
 
-  test "move\1 moves the alchemist east" do
-    alchemist = Alchemist.new()
+  setup do
+    alchemist = Alchemist.new(2)
 
-    assert Alchemist.move(alchemist).position == 1
+    [alchemist: alchemist]
+  end
+
+  test "move\2 moves west when the alchemist needs to go west", %{alchemist: alchemist} do
+    assert Alchemist.move(alchemist, :west).position == 1
+  end
+
+  test "move\2 moves east when the alchemist needs to go east", %{alchemist: alchemist} do
+    assert Alchemist.move(alchemist, :east).position == 3
   end
 end
