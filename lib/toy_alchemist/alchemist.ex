@@ -1,15 +1,14 @@
 defmodule ToyAlchemist.Alchemist do
   defstruct [:position]
 
-  def move(%__MODULE__{position: position} = alchemist, :east) do
-    %{alchemist | position: position + 1}
+  alias ToyAlchemist.Position
+
+  def move(%__MODULE__{position: position} = alchemist, direction)
+      when direction in [:east, :west, :north, :south] do
+    %{alchemist | position: Position.move(position, direction)}
   end
 
-  def move(%__MODULE__{position: position} = alchemist, :west) do
-    %{alchemist | position: position - 1}
-  end
-
-  def new(position \\ 0) do
+  def new(position \\ Position.new()) do
     struct!(__MODULE__, position: position)
   end
 end
