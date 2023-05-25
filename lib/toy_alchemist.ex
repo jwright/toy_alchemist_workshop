@@ -1,0 +1,2 @@
+defmodule ToyAlchemist do
+end
